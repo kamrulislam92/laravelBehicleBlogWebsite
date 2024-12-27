@@ -89,7 +89,7 @@
                                     <ul>
                                         <li><a href="{{ route('blogs.index') }}">Blog</a></li>
                                         <li><a href="{{ route('privecy.index') }}">Privacy Policy</a></li>
-                                        <li><a href="terms-condition.html">Terms Conditions</a></li>
+                                        <li><a href="{{ route('terms_condition.index') }}">Terms Conditions</a></li>
                                     </ul>
                                 </div>
                             </div>
