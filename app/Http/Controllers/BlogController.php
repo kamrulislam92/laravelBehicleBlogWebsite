@@ -2,14 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
+use App\Models\Catogory;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
     // Display a list of all blogs
+
+
     public function index()
     {
-        return view('blogs.index'); 
+
+        $blogs = Blog::all(); 
+      
+
+        return view('blogs.index', compact('blogs')); 
 
         
         // $blogs = Blog::all(); // Fetch all blogs

@@ -1,17 +1,19 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PrivecyController;
 use App\Http\Controllers\TermConditionController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
 
+Route::get('/', [WelcomeController::class, 'index']); 
 Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index'); 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index'); 
 Route::get('/privecy', [PrivecyController::class, 'index'])->name('privecy.index'); 
