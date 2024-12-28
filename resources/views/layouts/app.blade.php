@@ -11,7 +11,7 @@
     <meta name="googlebot" content="index,follow">
     <meta name="author" content="rony">
     <meta name="csrf-token" content="">
-    <meta property="og:image" content="assets/images/favicon.png">
+    <meta property="og:image" content="{{asset('assets/images/favicon.png')}}">
     <meta property="og:site_name" content="Blog">
     <meta property="og:title" content="top business news - Blog">
     <meta property="og:url" content="https://blog.com">
@@ -21,7 +21,7 @@
     <meta name="keywords"
         content="blog, business">
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="icon" type="image/png" href="{{asset('assets/images/favicon.png')}}">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <!-- Css -->

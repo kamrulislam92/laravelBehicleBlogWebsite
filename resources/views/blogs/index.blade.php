@@ -61,59 +61,65 @@
                 <div class="col-xl-9 order-xl-1">
                     <div class="blog_wrapper">
                         <div class="row gy-4">
-                            <!-- blog post -->
-                             @foreach($blogs as $post)
+                            
+                           @foreach($blogs as $post)
                             <div class="col-md-6">
                                 <div class="blog_post p-3 p-lg-4 card h-100 bg-transparent shadow-sm border-opacity-10">
                                     <div class="blog_img mb-4 position-relative">
                                         <a href="details.html">
-                                            <img class="img-fluid rounded z-3" src="assets/images/blog/car.jpg"
-                                                alt="Health & Wellness">
+                                            <img class="img-fluid rounded z-3" src="{{'assets/images/blog/'.($post->img)}}" alt="{{ $post->title }}">
                                         </a>
                                     </div>
                                     <div class="blog_content card-body p-0">
                                         <div class="short_info d-sm-flex align-items-center mb-3">
+                                            <!-- Category -->
                                             <div class="mb-2 mb-sm-0 me-3">
                                                 <div class="d-flex align-items-center">
                                                     <div class="icon me-1">
                                                         <img src="assets/images/tag.svg" alt="Tag">
                                                     </div>
-                                                    <div class="date"><span>{{$post->category->title}}</span></div>
+                                                    <div class="date">
+                                                        <span>{{ optional($post->category)->title ?? 'Uncategorized' }}</span>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <!-- Created At -->
                                             <div class="mb-2 mb-sm-0 me-3">
                                                 <div class="d-flex align-items-center">
                                                     <div class="icon me-1">
                                                         <img src="assets/images/calendar.svg" alt="Date">
                                                     </div>
-                                                    <div class="date"><span>{{$post->created_at}}</span></div>
+                                                    <div class="date">
+                                                        <span>{{ $post->created_at->format('Y-m-d') }}</span>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <!-- Views -->
                                             <div class="">
                                                 <div class="d-flex align-items-center">
                                                     <div class="icon me-1">
-                                                        <img src="assets/images/eye.svg" alt="View">
+                                                        <img src="assets/images/eye.svg" alt="Views">
                                                     </div>
-                                                    <div class="date"><span>{{$post->views}}</span></div>
+                                                    <div class="date">
+                                                        <span>{{ $post->views ?? 0 }}</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <h3 class="mb-3">
-                                            <a href="details.html">Exploring Italy with the Top Premium Car Rental
-                                                Services</a>
+                                            <a href="#">{{ $post->title }}</a>
                                         </h3>
                                         <div class="blog_desc mb-2">
-                                            When it comes to experiencing the beauty and charm of Italy, there's no
-                                            better way to explore its pi...
+                                            {{ Str::limit($post->description, 100, '...') }}
                                         </div>
                                     </div>
                                     <hr>
                                     <div class="card-footer mt-2 bg-transparent border-0 blog_content p-0">
-                                        <a class="learn_more" href="details.html">Read More</a>
+                                        <a class="learn_more" href="{{ route('blog.show', $post->slug) }}">Read More</a>
                                     </div>
                                 </div>
                             </div>
-                           @endforeach
+                            @endforeach
                         </div>
                     </div>
 
