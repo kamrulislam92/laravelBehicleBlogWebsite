@@ -28,7 +28,7 @@
                             </div>
                             <div class="categories_list">
                                 <ul>
-                                    @foreach($category as $cat)
+                                    @foreach($categories as $cat)
                                     <li><a href="#">{{$cat->title}}</a></li>
                                   
                                     @endforeach
@@ -41,7 +41,7 @@
                             </div>
                             <div class="latestpost_list">
                                 <ul>
-                                    @foreach($latestPost as $data)
+                                    @foreach($latestPosts as $data)
                                     <li><a href="{{route('blog.show', $data->slug)}}">{{$data->title}}</a></li>
                                     @endforeach
                                 </ul>
@@ -104,55 +104,64 @@
             </div>
             <div class="related_posts owl-theme owl-carousel">
                 <!-- blog post -->
-                 @foreach($relatedPost as $post)
-                <div class="blog_post p-3 p-lg-4 card h-100 bg-transparent shadow-sm border-opacity-10">
-                    <div class="blog_img mb-4 position-relative">
-                        <a href="details.html">
-                            <img class="img-fluid rounded z-3" src="{{'assets/images/blog/'.($post->img)}}" alt="{{ $post->title }}"
-                                alt="Health & Wellness">
-                        </a>
-                    </div>
-                    <div class="short_info d-sm-flex align-items-center mb-3">
-                        <div class="mb-2 mb-sm-0 me-3">
-                            <div class="d-flex align-items-center">
-                                <div class="icon me-1">
-                                    <img src="{{asset('assets/images/tag.svg')}}" alt="Tag">
+
+
+                @if($relatedPosts->isNotEmpty())
+
+                    @foreach($relatedPosts as $post)
+                        <div class="blog_post p-3 p-lg-4 card h-100 bg-transparent shadow-sm border-opacity-10">
+                        <div class="blog_img mb-4 position-relative">
+                            <a href="details.html">
+                                <img class="img-fluid rounded z-3" src="{{'assets/images/blog/'.($post->img)}}" alt="{{ $post->title }}"
+                                    alt="Health & Wellness">
+                            </a>
+                        </div>
+                        <div class="short_info d-sm-flex align-items-center mb-3">
+                            <div class="mb-2 mb-sm-0 me-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon me-1">
+                                        <img src="{{asset('assets/images/tag.svg')}}" alt="Tag">
+                                    </div>
+                                    <div class="date"><span>{{ optional($post->category)->title ?? 'Uncategorized' }}</span></div>
                                 </div>
-                                <div class="date"><span>{{ optional($post->category)->title ?? 'Uncategorized' }}</span></div>
+                            </div>
+                            <div class="mb-2 mb-sm-0 me-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon me-1">
+                                        <img src="{{asset('assets/images/calendar.svg')}}" alt="Date">
+                                    </div>
+                                    <div class="date"><span>{{ $post->created_at->format('Y-m-d') }}</span></div>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon me-1">
+                                        <img src="{{asset('assets/images/eye.svg')}}" alt="View">
+                                    </div>
+                                    <div class="date"><span>{{ $post->views ?? 0 }}</span></div>
+                                </div>
                             </div>
                         </div>
-                        <div class="mb-2 mb-sm-0 me-3">
-                            <div class="d-flex align-items-center">
-                                <div class="icon me-1">
-                                    <img src="{{asset('assets/images/calendar.svg')}}" alt="Date">
-                                </div>
-                                <div class="date"><span>{{ $post->created_at->format('Y-m-d') }}</span></div>
+                        <div class="blog_content card-body p-0">
+                            <h3 class="mb-3">
+                                <a href="{{ route('blog.show', $post->slug) }}">{{ $post->title }}</a>
+                            </h3>
+                            <div class="blog_desc mb-2">
+                            {{ Str::limit($post->description, 100, '...') }}
                             </div>
                         </div>
-                        <div class="">
-                            <div class="d-flex align-items-center">
-                                <div class="icon me-1">
-                                    <img src="{{asset('assets/images/eye.svg')}}" alt="View">
-                                </div>
-                                <div class="date"><span>{{ $post->views ?? 0 }}</span></div>
-                            </div>
+                        <hr>
+                        <div class="card-footer mt-2 bg-transparent border-0 blog_content p-0">
+                            <a class="learn_more" href="{{ route('blog.show', $post->slug) }}">Read More</a>
                         </div>
                     </div>
-                    <div class="blog_content card-body p-0">
-                        <h3 class="mb-3">
-                            <a href="">{{ $post->title }}</a>
-                        </h3>
-                        <div class="blog_desc mb-2">
-                        {{ Str::limit($post->description, 100, '...') }}
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="card-footer mt-2 bg-transparent border-0 blog_content p-0">
-                        <a class="learn_more" href="{{ route('blog.show', $post->slug) }}">Read More</a>
-                    </div>
-                </div>
-                @endforeach
-     
+                    @endforeach
+
+                    @else
+                        <p>No related posts available.</p>
+                    @endif
+
+
             </div>
         </div>
     </div>

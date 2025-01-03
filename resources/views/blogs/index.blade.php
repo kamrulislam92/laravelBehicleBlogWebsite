@@ -107,7 +107,7 @@
                                             </div>
                                         </div>
                                         <h3 class="mb-3">
-                                            <a href="#">{{ $post->title }}</a>
+                                            <a href="{{ route('blog.show', $post->slug) }}">{{ $post->title }}</a>
                                         </h3>
                                         <div class="blog_desc mb-2">
                                             {{ Str::limit($post->description, 100, '...') }}
