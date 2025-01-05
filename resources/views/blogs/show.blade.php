@@ -28,7 +28,7 @@
                             </div>
                             <div class="categories_list">
                                 <ul>
-                                    @foreach($categories as $cat)
+                                    @foreach($category as $cat)
                                     <li><a href="#">{{$cat->title}}</a></li>
                                   
                                     @endforeach
@@ -41,7 +41,7 @@
                             </div>
                             <div class="latestpost_list">
                                 <ul>
-                                    @foreach($latestPosts as $data)
+                                    @foreach($latestPost as $data)
                                     <li><a href="{{route('blog.show', $data->slug)}}">{{$data->title}}</a></li>
                                     @endforeach
                                 </ul>
@@ -106,13 +106,13 @@
                 <!-- blog post -->
 
 
-                @if($relatedPosts->isNotEmpty())
+                @if($relatedPost->isNotEmpty())
 
-                    @foreach($relatedPosts as $post)
+                    @foreach($relatedPost as $post)
                         <div class="blog_post p-3 p-lg-4 card h-100 bg-transparent shadow-sm border-opacity-10">
                         <div class="blog_img mb-4 position-relative">
                             <a href="details.html">
-                                <img class="img-fluid rounded z-3" src="{{'assets/images/blog/'.($post->img)}}" alt="{{ $post->title }}"
+                                <img class="img-fluid rounded z-3" src="{{asset('assets/images/blog/'.($post->img))}}" alt="{{ $post->title }}"
                                     alt="Health & Wellness">
                             </a>
                         </div>

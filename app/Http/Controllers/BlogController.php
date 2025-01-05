@@ -17,35 +17,36 @@ class BlogController extends Controller
         
     }
 
-    // public function show($slug)
-    // {
-    //     $blog = Blog::where('slug', $slug)->firstOrFail();
-    //    $category = Category::all();
-    //    $latestPost = Blog::latest()->limit(5)->get();
-    //    $relatedPost = Blog::where('category_id', $blog->category_id)->where('id','!=', $blog->id)->latest()->get();
-    // //    dd($relatedPost);
-    //     return view('blogs.show', compact('blog','category', 'latestPost', 'relatedPost'));
-    // }
     public function show($slug)
     {
         $blog = Blog::where('slug', $slug)->firstOrFail();
     
-        // Retrieve categories (only if needed)
-        $categories = Category::all();
-    
-        // Retrieve the latest 5 blog posts
-        $latestPosts = Blog::latest()->limit(5)->get();
-    
-        // Retrieve related posts by category, excluding the current blog
-        $relatedPosts = Blog::where('category_id', $blog->category_id)
-                            ->whereNotNull('category_id')
-                            ->where('id', '!=', $blog->id)
-                            ->latest()
-                            ->limit(5)
-                            ->get();
-    
-        return view('blogs.show', compact('blog', 'categories', 'latestPosts', 'relatedPosts'));
+       $category = Category::all();
+       $latestPost = Blog::latest()->limit(5)->get();
+       $relatedPost = Blog::where('category_id', $blog->category_id)->where('id','!=', $blog->id)->latest()->get();
+    //    dd($relatedPost);
+        return view('blogs.show', compact('blog','category', 'latestPost', 'relatedPost'));
     }
+    // public function show($slug)
+    // {
+    //     $blog = Blog::where('slug', $slug)->firstOrFail();
+    
+    //     // Retrieve categories (only if needed)
+    //     $categories = Category::all();
+    
+    //     // Retrieve the latest 5 blog posts
+    //     $latestPosts = Blog::latest()->limit(5)->get();
+    
+    //     // Retrieve related posts by category, excluding the current blog
+    //     $relatedPosts = Blog::where('category_id', $blog->category_id)
+    //                         ->whereNotNull('category_id')
+    //                         ->where('id', '!=', $blog->id)
+    //                         ->latest()
+    //                         ->limit(5)
+    //                         ->get();
+    // dd($relatedPosts);
+    //     return view('blogs.show', compact('blog', 'categories', 'latestPosts', 'relatedPosts'));
+    // }
     
     // // Show a single blog post
     // public function show($id)
