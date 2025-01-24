@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -11,8 +11,9 @@ class PrivecyController extends Controller
     public function index()
     {
         $privacyContent = DB::table('privacy')->first();
-        // dd($content);
-        return view('pages.privecy', compact('privacyContent')); 
+        $latestPost = Blog::latest()->limit(5)->get();
+    
+        return view('pages.privecy', compact('privacyContent','latestPost')); 
 
         
         // $blogs = Blog::all(); // Fetch all blogs

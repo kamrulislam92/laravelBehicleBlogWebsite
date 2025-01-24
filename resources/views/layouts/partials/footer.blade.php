@@ -17,7 +17,7 @@
                                     placeholder="Enter your email address" required="">
                                 <button type="submit" class="input-group-text bg-primary border-primary text-white">
                                     Subscribe
-                                    <img src="assets/images/icons/subscribe.svg" alt="Subscribe">
+                                    <img src="{{asset('assets/images/icons/subscribe.svg')}}" alt="Subscribe">
                                 </button>
                             </div>
                         </form>
@@ -101,9 +101,12 @@
                                 </div>
                                 <div class="links">
                                     <ul>
-                                        <li><a href="#">BMW car price updated 2024</a></li>
+                                        <!-- <li><a href="#">BMW car price updated 2024</a></li>
                                         <li><a href="#">BMW ECU Cloning</a></li>
-                                        <li><a href="">ECU Remaping of Toyota</a></li>
+                                        <li><a href="">ECU Remaping of Toyota</a></li> -->
+                                        @foreach($latestPost as $data)
+                                        <li><a href="{{route('blog.show', $data->slug)}}">{{$data->title}}</a></li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
