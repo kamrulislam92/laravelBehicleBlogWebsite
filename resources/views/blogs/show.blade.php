@@ -29,7 +29,7 @@
                             <div class="categories_list">
                                 <ul>
                                     @foreach($category as $cat)
-                                    <li><a href="#">{{$cat->title}}</a></li>
+                                    <li><a href="{{route('category.show', $cat->slug)}}">{{$cat->title}}</a></li>
                                   
                                     @endforeach
                                 </ul>

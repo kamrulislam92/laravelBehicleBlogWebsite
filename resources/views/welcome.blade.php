@@ -15,16 +15,10 @@
                             </div>
                             <div class="categories_list">
                                 <ul>
-                                    <li><a href="#">Technology (1)</a></li>
-                                    <li><a href="#">Health & Wellness (1)</a></li>
-                                    <li><a href="#">Travel (1)</a></li>
-                                    <li><a href="#">Food & Recipes (1)</a></li>
-                                    <li><a href="#">Lifestyle (1)</a></li>
-                                    <li><a href="#">Finance (1)</a></li>
-                                    <li><a href="#">Education (1)</a></li>
-                                    <li><a href="#">Entertainment (1)</a></li>
-                                    <li><a href="#">Sports (1)</a></li>
-                                    <li><a href="#">Fashion (1)</a></li>
+                                 @foreach($category as $cat)
+                                    <li><a href="{{route('category.show', $cat->slug)}}">{{$cat->title}}</a></li>
+                                  
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -34,12 +28,9 @@
                             </div>
                             <div class="latestpost_list">
                                 <ul>
-                                    <li><a href="#">BMW car price updated 2024</a></li>
-                                    <li><a href="#">BMW ECU Cloning</a></li>
-                                    <li><a href="#">ECU Remaping of Toyota</a></li>
-                                    <li><a href="#">BMW car price updated 2024</a></li>
-                                    <li><a href="#">BMW ECU Cloning</a></li>
-                                    <li><a href="#">ECU Remaping of Toyota</a></li>
+                                    @foreach($latestPost as $data)
+                                    <li><a href="{{route('blog.show', $data->slug)}}">{{$data->title}}</a></li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>

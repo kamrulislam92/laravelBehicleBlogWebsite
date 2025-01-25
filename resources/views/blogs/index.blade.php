@@ -28,16 +28,10 @@
                             </div>
                             <div class="categories_list">
                                 <ul>
-                                    <li><a href="#">Technology</a></li>
-                                    <li><a href="#">Health & Wellness</a></li>
-                                    <li><a href="#">Travel</a></li>
-                                    <li><a href="#">Food & Recipes</a></li>
-                                    <li><a href="#">Lifestyle</a></li>
-                                    <li><a href="#">Finance</a></li>
-                                    <li><a href="#">Education</a></li>
-                                    <li><a href="#">Entertainment</a></li>
-                                    <li><a href="#">Sports</a></li>
-                                    <li><a href="#">Fashion</a></li>
+                                 @foreach($category as $cat)
+                                    <li><a href="{{route('category.show', $cat->slug)}}">{{$cat->title}}</a></li>
+                                  
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -47,12 +41,9 @@
                             </div>
                             <div class="latestpost_list">
                                 <ul>
-                                    <li><a href="#">BMW car price updated 2024</a></li>
-                                    <li><a href="#">BMW ECU Cloning</a></li>
-                                    <li><a href="#">ECU Remaping of Toyota</a></li>
-                                    <li><a href="#">BMW car price updated 2024</a></li>
-                                    <li><a href="#">BMW ECU Cloning</a></li>
-                                    <li><a href="#">ECU Remaping of Toyota</a></li>
+                                    @foreach($latestPost as $data)
+                                    <li><a href="{{route('blog.show', $data->slug)}}">{{$data->title}}</a></li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>

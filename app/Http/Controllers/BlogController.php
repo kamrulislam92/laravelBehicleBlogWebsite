@@ -13,8 +13,8 @@ class BlogController extends Controller
 
         $blogs = Blog::all(); 
         $latestPost = Blog::latest()->limit(5)->get();
-        
-        return view('blogs.index', compact('blogs', 'latestPost')); 
+        $category = Category::all();
+        return view('blogs.index', compact('blogs', 'latestPost', 'category')); 
         
     }
 
